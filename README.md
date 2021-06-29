@@ -1,4 +1,4 @@
-# SkyArc License Helper for StackHub Products
+# SkyArc Licence Helper for StackHub Licences
 
 A helper class that finds valid StackHub licences on SkyArc systems. Note that the `StackHubLic` class and extension disabling is only available in SkySpark 3.0.13 or later.
 
