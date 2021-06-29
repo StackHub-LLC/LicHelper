@@ -1,6 +1,6 @@
 # SkyArc License Helper for StackHub Products
 
-A helper class that finds valid StackHub licences on SkyArc systems. Note that the `StackHubLic` class and extension disabling is only available in SkySpark 3.0.12 or later.
+A helper class that finds valid StackHub licences on SkyArc systems. Note that the `StackHubLic` class and extension disabling is only available in SkySpark 3.0.13 or later.
 
 Copy and paste the Fantom class below into your SkyArc project.
 
@@ -24,7 +24,6 @@ licence validation may be performed during the extension `onStart()` event. Typi
 				lic := LicHelper(sys)
 					.findVendor(Ref("87654321-87654321", "Acme"))
 					.findPackage(Depend("acmeExt 1.0"))
-					.findProduct(Ref("12345678-12345678", "AcmeExt"))
 					.findValid.get
 	
 				cap := LicHelper.parseCapacity(lic)
@@ -41,8 +40,6 @@ licence validation may be performed during the extension `onStart()` event. Typi
 	}
 
 Note `findVendor()` should be called with your StackHub Vendor ID available from the [My Products](https://stackhub.org/my/products/) page.
-
-`findProduct()` should be called with your StackHub Product ID, available from the [My Product](https://stackhub.org/my/products/) edit pages. 
 
 `findPackage()` should probably be called with the details of the current pod:
 
