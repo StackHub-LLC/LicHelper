@@ -143,6 +143,15 @@ internal final class LicHelper {
 		LicHelper(lics.dup)
 	}
 	
+	** Whittles down 'lics' and throws 'LicErr' should it become empty and 'checked' is 'true'.
+	This whittleDown(Str errMsg, Bool checked, |StackHubLic->Bool| f) {
+		oldLics := lics.dup 
+		lics = lics.findAll(f)
+		if (checked && lics.isEmpty)
+			throw LicErr(errMsg, oldLics)
+		return this
+	}
+
 	** Parses the 'capacity' field of the given licence into a map of units to quantity.
 	** Returns an empty map if the 'capacity' property is not found in the licence.
 	static Str:Int parseCapacity(StackHubLic lic) {
@@ -151,15 +160,6 @@ internal final class LicHelper {
 			caps[it.split[1]] = it.split[0].toInt
 		}
 		return caps
-	}
-	
-	** Whittles down 'lics' and throws 'LicErr' should it become empty and 'checked' is 'true'.
-	private This whittleDown(Str errMsg, Bool checked, |StackHubLic->Bool| f) {
-		oldLics := lics.dup 
-		lics = lics.findAll(f)
-		if (checked && lics.isEmpty)
-			throw LicErr(errMsg, oldLics)
-		return this
 	}
 	
 	** Pretty prints a 'Ref' with its ID and optional 'dis'.
